@@ -4,7 +4,7 @@ import { AddChannel } from '../assets'
 
 
 
-const TeamChannelList = ({ children, error = false, loading, type }) => {
+const TeamChannelList = ({ children, error = false, loading, type, isCreating, setIsCreating, setCreateType, setIsEditing}) => {
     if(error){
         return type === 'team' ? (
             <div className="team-channel-list">
@@ -32,7 +32,13 @@ const TeamChannelList = ({ children, error = false, loading, type }) => {
         <p className="team-channel-list__header__title">
         { type === 'team' ? 'Channels' : 'Direct Messages' } 
         </p>
-      {/* Button to add channel   */}
+            <AddChannel 
+              isCreating={isCreating}
+              setIsCreating={setIsCreating}
+              setCreateType={setCreateType} 
+              setIsEditing={setIsEditing}
+              type={ type === 'team' ? 'team' : 'messaging' }
+            />
     </div>  
     {children}
   </div>
